@@ -18,3 +18,25 @@ These are all desirable traits for any code base and make it cheaper to maintain
 ## Consistency of Style
 
 Coding style matters in aproject because it removes one more thing to worry about as you try to read and understand the code. You will need to tweak your code to aim at being more consistent in terms of positioning of brackets, spacing around comments and making sure we have only one statement per line. If you use a consisten style across large code bases, it will pay dividends and remove one more cognitive load for the person trying to read the code.
+
+## Exit Early with Guard Clauses
+
+If you can exit early from a method, you should consider doing so. It is a good technique for handling obvious error conditions in a code path and helps the reader of your code 'park' thise paths in their head.
+
+## Naming
+
+We can convey a lot of information in a well-creafted variable, method or class name.
+Capitalization Conventions. There are many conventions in use across companies, teams, programming languages whenit comes to the naming in their code. Two well-known conventions are PascalCasing and camelCasing. camelCasing is usually used for naming private member variables. We would use PascalCasing for public classes, methods, members.
+
+## Refactoring Duplicate Code
+Repetitive code can be moved to their own methods. Since streams use system resources, we will also make sure to release those resources with the help of the using construct.
+
+### Reducing Code Duplication tips
+ - **Locally in a class** - wrap in a private method of that class
+ - **Useful for entire app** - Add as an internal method as part of a helper/utility class
+ - **Useful across apps** - Add to a library or a service outside of this app
+ - **Useful for this class and all descendants of it** - Add as an internal method of the base class of the inheritence chain
+
+### Remove String Literals
+
+String literals are a potential code smell and can often lead to coding errors. String literals can also lead to confusion. code Smell is a term of endearment in the Software Development world we give to code or code structures that indicate that something is not quite right. The example in this unit is string literals. The string literals used for arguments in this code give the impression that the developer wasn't quite finished making the code readable and self-describing. Smells often occur with the structure of a piece of software. If a good way of structuring or implementing something is defined as a pattern, a smell can lead to, or result in, anti-patterns

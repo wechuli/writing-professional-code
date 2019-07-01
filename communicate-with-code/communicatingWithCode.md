@@ -40,3 +40,22 @@ Repetitive code can be moved to their own methods. Since streams use system reso
 ### Remove String Literals
 
 String literals are a potential code smell and can often lead to coding errors. String literals can also lead to confusion. code Smell is a term of endearment in the Software Development world we give to code or code structures that indicate that something is not quite right. The example in this unit is string literals. The string literals used for arguments in this code give the impression that the developer wasn't quite finished making the code readable and self-describing. Smells often occur with the structure of a piece of software. If a good way of structuring or implementing something is defined as a pattern, a smell can lead to, or result in, anti-patterns
+
+### Remove Redundant Variables
+
+When reviewing code, ask yourself whether each variable is needed. Question its value by at least asking the following:]
+
+- How often is the variable used? If is only used once, then perhaps there is no need for the variable.
+- Does it add value in terms of clarification of intent? If it doesn't help explain what the code is supposed to be doing, then what calue does the name bring?
+
+### Remove Control-flow Variables
+
+Typically, the flow of code is controlled through application state or conditions. Control-flow variables are variables that are unnecessarily part of this control flow. Whenever you see a variable like this, see it as an opportunity to make an improvement. It is likely that we can re-structure the flow of logic in our code to remove the need for this kind of variable.
+
+### Simplify When Possible
+
+Simplification is a great way to improve the readability of your code and make it easier to maintain. When you inherit a project, you should look for ways to simplify and refactor code as early as possible. Removing code that isn't needed (see YAGNI below) or code that is not used (dead code) is a great simplification opportunity.
+
+You Aren't Going to Need It
+
+Triple slash comments show up in intellisense

@@ -1,0 +1,9 @@
+F:\repos\writing-professional-code\math-master\myLib\bin\Debug\netstandard2.0\myLib.deps.json
+F:\repos\writing-professional-code\math-master\myLib\bin\Debug\netstandard2.0\myLib.dll
+F:\repos\writing-professional-code\math-master\myLib\bin\Debug\netstandard2.0\myLib.pdb
+F:\repos\writing-professional-code\math-master\myLib\obj\Debug\netstandard2.0\myLib.csprojAssemblyReference.cache
+F:\repos\writing-professional-code\math-master\myLib\obj\Debug\netstandard2.0\myLib.csproj.CoreCompileInputs.cache
+F:\repos\writing-professional-code\math-master\myLib\obj\Debug\netstandard2.0\myLib.AssemblyInfoInputs.cache
+F:\repos\writing-professional-code\math-master\myLib\obj\Debug\netstandard2.0\myLib.AssemblyInfo.cs
+F:\repos\writing-professional-code\math-master\myLib\obj\Debug\netstandard2.0\myLib.dll
+F:\repos\writing-professional-code\math-master\myLib\obj\Debug\netstandard2.0\myLib.pdb

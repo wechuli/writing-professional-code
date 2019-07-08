@@ -76,3 +76,162 @@ This is the opposite of the setup step and the goal is to leave the test infrast
 ## Summary
 
 Software Testing encapsulates a broad spectrum of techniques to verify that the code we write does what it says, and continues to do so over time. In some companies and projects, the bulk of testing is left to a set of testers who test manually and also automate tests. There are many reasons why this is done. Sometimes a team is created with the goal of having people dedicated to that aspect of software development. In critical systems such as Financial Services, where money is at stake, testing is done by another part of a team, or even from another group as a form of Separation of Responsibilities or Segregation of Duties. This is done to prevent fraud and reduce errors caused by the same people building the code and testing it.
+
+## Introduction to Unit Tests
+
+We described different types of testing in terms of what relationships in a software system or program they are responsible for verifying. Lets look at test types from another perspective, granularity of the System Under Test(SUT) i.e what they are testing
+
+![](overview.PNG)
+
+As the preceding fiagram illustrates, Unit Tests are verifying software at the most granular level. If `My Code` in the diagram represents the code you, as a developer, write and maintain directly, then Unit Tests are the tests you write to the most granula unit of your code. A method is a good candidate for a unit test.
+
+```C#
+class MathHelper
+{
+    public int Add(int A,int B)
+    {
+
+    }
+
+    public int Subtract(int A,int B)
+    {
+
+    }
+
+    public int Multiply(int A, int B)
+    {
+
+    }
+
+    public int Divide(int A, int B)
+    {
+
+    }
+}
+```
+
+Our MathHelper outlined above has a clear purpose - it supplies functionality to carry out integer operations on two numbers. At its most granular level, we can say that you can perform four operations with this class - Add, Subtract, Multiply and Divide. So, when writing unit tests, we look at each of these operations in isolation and verify each one separately. Put another way, a test that tries to verify Add() and Subtract() at the same time, is not a Unit Test since it is testing too much. A test that is written to test inside one of these methods is too granular since we really only care about verifying the output of each method.
+
+Let's try to dream up some basic tests for each method in our fictitious example. We'll start with the Add() method. When writing Unit tests, we often start with the simplest fact about the method or system under test. In the case of Add, we can state
+
+        Add returns an int value that is equal to the sum of the two int values it received as arguments.
+
+Another fact we know about Add, from our days learning Math in school, is that A + 0 = A. We write this fact as follows:
+
+        Adding zero to a number does not change a number.
+
+We can become more sophisticated and test for the commutative property addition, i.e. A+B = B+A. We can write that as follows:
+
+        The addition of numbers is the same regardless of the order in which the numbers are added.
+
+If we turn the three statements we wrote above into unit tests, we would have three really useful tests for the Add operator. It is fair to say that if we ran these tests and they pass, the Add operator we implemented is verified to work as expected, as an addition operation.
+
+So, what would a test look like in code? Well,naming is important, so let's start there. The name should convey the outcome we are expecting and describe what we're testing. There is no hard-and-fast rule around the length of name. The following is a descriptive example:
+
+```C#
+void ReturnsNumberWhenZeroAddedToNumber()
+{
+
+}
+```
+
+This naming update makes it easier deconstruct the name into its meaning as follows:
+
+- Returns - just an action word describing the fact the Add() returns something.
+
+- Number - what the Add() method returns.
+
+- When - used to separate the outcome from the condition. The outcome happens when the condition occurs.
+
+- ZeroAddedToNumber - the condition under which we expect the stated outcome.
+
+Now that we have a name we are happy with, let's look at the body of the test. To call our fictitious Add() method from this test, we need to reference an instance of the class, MathHelper. Creating this dependency is a great example of the Setup step of a test and will look like the following:
+
+```C#
+void Returns_Number_When_ZeroAddedToNumber()
+{
+    // Setup
+    var mathHelper = new MathHelper();
+    var testNumber = 11;
+    var expectedOutcome = 11;
+
+}
+```
+
+In the preceding code, you may have noticed an extra line that sets the testNumber. This can also be considered part of the setup phase. The value 11 was just randomly selected. We also added a variable to hold the expected outcome of the Add() method when we call it. As the test name suggests we expect testNumber + 0 == testNumber.
+
+Now it's time to exercise the Add() method and capture the return. Some people call this the Exercise step, or phase, and we add it to the test as follows:
+
+```C#
+void Returns_Number_When_ZeroAddedToNumber()
+{
+    // Setup
+    var mathHelper = new MathHelper();
+    var testNumber = 11;
+    var expectedOutcome = testNumber;
+
+
+    // Exercise
+    var actualOutcome = mathHelper.Add(testNumber, 0);
+
+}
+```
+
+So, in the Exercise phase, we capture the actual outcome in a variable that we have named _actualOutcome_. All that is left to do is to verify this result against what we expected.
+
+```C#
+void Returns_Number_When_ZeroAddedToNumber()
+{
+    // Setup
+    var mathHelper = new MathHelper();
+    var testNumber = 11;
+    var expectedOutcome = testNumber;
+
+
+    // Exercise
+    var actualOutcome = mathHelper.Add(testNumber, 0);
+
+    // Verify
+    if (actualOutcome != expectedOutcome)
+    {
+        // Test Failed
+    }
+    else
+    {
+        // Test Passed
+    }
+
+}
+```
+
+As the pseudo-code shows, the test will pass or fail based on the comparison of actualOutcome to expectedOutcome. How the test fails, is left to the imagination of the reader. Typically a message is printed to the console, a tally of total failed tests is incremented and possibly a nasty sound is played to make sure we hear this failure.
+
+The pattern described here is a pattern most Unit Tests follow. Whether or not the phases are explicitly called out in a test is left to the developer's discretion. However, it is good practice to be conscious of each step so that you are designing the test as simply as possible. Some people use the Setup-Exercise-Verify comments to help them structure the tests. An easier acronym to remember is AAA - Arrange-Act-Assert.
+
+So, that's it - congratulations! You have just written your first Unit Test in pseudo-code. Of course, we haven't tackled some mechanics such as:
+
+- How to run multiple tests in a "test run" automatically
+
+- How to handle any dependencies our code has on other libraries or services
+
+These scenarios and more, are handled by the many test Unit Test frameworks available to us these days. In the next lesson, we'll look at the popular xUnit framework and see how that can help us build a strong foundation of Unit Tests efficiently.
+
+## xUnit and Visual Studio Code
+
+xUnit is a popular unit testing framework for .NET and is similar to other frameworks on the market such as NUnit and MS Test. As a framework, the goal is to make our lives as developers easier when it comes to writing tests. By easier, I mean:
+
+- Ability to write tests consistently
+
+- Not have to worry about how to run tests and report results
+
+- Abstract some repeatable verification code so I am not repeating myself
+
+- Support test isolation - tests don't interfere with one another, ever.
+
+- Take advantage of language features to make my tests succinct, yet readable
+
+Most test frameworks offer varying degrees of support for the preceding list of requirements. xUnit is one of those and happens to also integrate very nicely with .NET Core and Visual Studio Code. You can read all about xUnit in the official xUnit Documentation, but let's learn about it by going hands-on here.
+
+## Tests Driven Development(TDD) 
+
+The process outlined here is one way to perform what is called, Test Driven Development. Advocates for this method of software development believe this approach helps you design your solution and guarantee quality at the same time, leaving behind very little test debt. 

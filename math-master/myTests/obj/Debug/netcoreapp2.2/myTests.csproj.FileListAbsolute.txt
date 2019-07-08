@@ -1,0 +1,17 @@
+F:\repos\writing-professional-code\math-master\myTests\bin\Debug\netcoreapp2.2\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+F:\repos\writing-professional-code\math-master\myTests\bin\Debug\netcoreapp2.2\xunit.runner.reporters.netcoreapp10.dll
+F:\repos\writing-professional-code\math-master\myTests\bin\Debug\netcoreapp2.2\xunit.runner.utility.netcoreapp10.dll
+F:\repos\writing-professional-code\math-master\myTests\bin\Debug\netcoreapp2.2\myTests.deps.json
+F:\repos\writing-professional-code\math-master\myTests\bin\Debug\netcoreapp2.2\myTests.runtimeconfig.json
+F:\repos\writing-professional-code\math-master\myTests\bin\Debug\netcoreapp2.2\myTests.runtimeconfig.dev.json
+F:\repos\writing-professional-code\math-master\myTests\bin\Debug\netcoreapp2.2\myTests.dll
+F:\repos\writing-professional-code\math-master\myTests\bin\Debug\netcoreapp2.2\myTests.pdb
+F:\repos\writing-professional-code\math-master\myTests\obj\Debug\netcoreapp2.2\myTests.csprojAssemblyReference.cache
+F:\repos\writing-professional-code\math-master\myTests\obj\Debug\netcoreapp2.2\myTests.csproj.CoreCompileInputs.cache
+F:\repos\writing-professional-code\math-master\myTests\obj\Debug\netcoreapp2.2\myTests.AssemblyInfoInputs.cache
+F:\repos\writing-professional-code\math-master\myTests\obj\Debug\netcoreapp2.2\myTests.AssemblyInfo.cs
+F:\repos\writing-professional-code\math-master\myTests\obj\Debug\netcoreapp2.2\myTests.dll
+F:\repos\writing-professional-code\math-master\myTests\obj\Debug\netcoreapp2.2\myTests.pdb
+F:\repos\writing-professional-code\math-master\myTests\bin\Debug\netcoreapp2.2\myLib.dll
+F:\repos\writing-professional-code\math-master\myTests\bin\Debug\netcoreapp2.2\myLib.pdb
+F:\repos\writing-professional-code\math-master\myTests\obj\Debug\netcoreapp2.2\myTests.csproj.CopyComplete

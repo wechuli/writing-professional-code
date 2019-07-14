@@ -32,3 +32,8 @@ We can remove a remote branch using
     git remote remove {name_of_branch}
 
 It is possible to have links to multiple different remote repositories.
+
+## Sending Commits
+To send local commits to a remote repository, you need to use the `git push` command. You provide the remote short name and then you supply the name of the branch that contains the commits you want to push:
+
+    $ git push <remote-shortname> <branch>

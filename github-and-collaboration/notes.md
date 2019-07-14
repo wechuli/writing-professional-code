@@ -33,7 +33,16 @@ We can remove a remote branch using
 
 It is possible to have links to multiple different remote repositories.
 
+## Git log
+
+    $  git log --oneline --graph --decorate --all
+    
 ## Sending Commits
 To send local commits to a remote repository, you need to use the `git push` command. You provide the remote short name and then you supply the name of the branch that contains the commits you want to push:
 
     $ git push <remote-shortname> <branch>
+
+
+This marker is `origin/master` and is called a **tracking branch**. A tracking branch's name includes the shortname of the remote repository as well as the name of the branch. so the tracking branch `origin/master` is telling us that the remote `origin` has a branch that points to commit __. This is really helpful because this means we can track the information of the remote Repository right in our local one.
+
+One very important thing to know is that this `origin/master` tracking branch is not a live representation of where the branch exists on the remote repository. If a change is made to the remote repository by someone else, the `origin/master` tracking branch in our local repository will not move. We have to tell it to go check for any updates and then it will move.

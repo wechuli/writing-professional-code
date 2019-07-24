@@ -46,3 +46,37 @@ To send local commits to a remote repository, you need to use the `git push` com
 This marker is `origin/master` and is called a **tracking branch**. A tracking branch's name includes the shortname of the remote repository as well as the name of the branch. so the tracking branch `origin/master` is telling us that the remote `origin` has a branch that points to commit __. This is really helpful because this means we can track the information of the remote Repository right in our local one.
 
 One very important thing to know is that this `origin/master` tracking branch is not a live representation of where the branch exists on the remote repository. If a change is made to the remote repository by someone else, the `origin/master` tracking branch in our local repository will not move. We have to tell it to go check for any updates and then it will move.
+
+## Pull changes from a remote
+Let's say that we are in a situation where there are commits on the remote repository that we do not have in our local repository.
+
+        $git pull origin master
+
+
+The branch that appears in the *local* repository is actually tracking a branch in the remote repository(e.g `origin/master` in the local repository is a tracking branch because it's tracking the progress of the `master` branch on the remote repository that has the shortname "origin")
+
+Remember that the `origin/master` branch is not a live mapping of where the remote's master branch is located. If the remote's `master` moves, the local `origin/master` branch stays the same. To update this branch, we need to sync the two together.
+
+`git push` will sync the remote repository with the local repository. To do the opposit(to sync the local with the remote), we need to use `git pull`.
+
+If you don't want to automatically merge the local branch with the tracking branch then you wouldn't use `git pull`, you would use a different command `git fetch`. You might want to do this  if there are commits on the respository that you don't have but there are also commits on the local respository that the remote one doesn't have either.
+
+When `git pull` is run, the following things happen
+- the commits(s) on the remote branch are copied to the local repository
+- the local tracking branch(`origin/master`) is moved to point to the most recent commit
+- the local tracking branch(`origin/master`) is merged into the local branch(`master`)
+
+
+Git fetch is used to retrieve commits from a remote respository's branch but it does not automatically merge the local branch with the remote tracking branch after those commits have been received.
+
+You provide the exact same information to `git fetch` as you do for `git pull`. So you provide the shortname of the remote repository you want to fetch from and then the branch you want to fetch
+
+        $git fetch origin master
+
+When `git fetch` is run, the follwowing things happen:
+- the commit(s) on the remote branch are copied to the local repository
+- the local tracking branch(e.g `origin/master` is moved to point to the most recent commit)
+
+The important thing to note is that the local branch does not change at all.
+
+One main point when you want to use git fetch rather than git pull is if your remote branch and your local branch both have changes that neither of the other ones has. In this case, you want to fetch the remote changes to get them in your local branch and then perform a merge manually. Then you can push that new merge commit back to the remote.

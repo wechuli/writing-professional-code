@@ -130,3 +130,41 @@ A quick way that we can see how many commits each contributor has added to the r
 `git shortlog` displays an alphabetical list of names and commit messages that go along with them. If we just want to see the number of commits that each developer has made, we can add a couple of flags `-s` to show just the number of commits(rather than each commit's message) and `-n` to sort them numerically(rather than alphabetically by author name)
 
         $ git shortlog -s -n
+
+### Filter By Author
+
+Another way that we can display all of the commits by an author is to use the regular `git log` command but include the `--author` flag to filter the commits to the provided author.
+
+        $git log --author=Surma
+
+
+
+        git show {commit SHA}
+### Filter Commits By Search
+
+It is important to write good, descriptive commit messages.If you write a descriptive commit message, then it's so much easier to search through the commit messages later, to find exactly what you're looking for.
+
+And remeber, if the commit message is not enough for you to explain what the commit is for, you can provide a detailed description of exactly why the commit is needed in the description area.
+
+We can filter commits with the `--grep` flag.
+
+How about we filter down to just the commits that reference the word "bug". We can do that with either of the following commands:
+
+    $git log --grep=bug
+    $git log --grep bug
+    $git log --grep "unit tests"
+
+### Summary
+
+The `git log` command is extremely powerful and you can use it to discover a lot about a repository. But it can be especially helpful to discover information about a repository that you're collaborating on with others.
+
+You can use `git log` to:
+- group commits bu author with `git shortlog`
+    $git shortlog
+- filter commits with the `--author` flag
+    $git log --author="Richard Kalehoff"
+- filter commits using the `--grep` flag
+    $git log -grep="border radius issue in Safari"
+
+
+

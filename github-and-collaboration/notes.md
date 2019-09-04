@@ -140,6 +140,7 @@ Another way that we can display all of the commits by an author is to use the re
 
 
         git show {commit SHA}
+
 ### Filter Commits By Search
 
 It is important to write good, descriptive commit messages.If you write a descriptive commit message, then it's so much easier to search through the commit messages later, to find exactly what you're looking for.
@@ -159,12 +160,104 @@ How about we filter down to just the commits that reference the word "bug". We c
 The `git log` command is extremely powerful and you can use it to discover a lot about a repository. But it can be especially helpful to discover information about a repository that you're collaborating on with others.
 
 You can use `git log` to:
+
 - group commits bu author with `git shortlog`
-    $git shortlog
+  \$git shortlog
 - filter commits with the `--author` flag
-    $git log --author="Richard Kalehoff"
+  \$git log --author="Richard Kalehoff"
 - filter commits using the `--grep` flag
-    $git log -grep="border radius issue in Safari"
+  \$git log -grep="border radius issue in Safari"
 
+## Determing What To Work On
 
+If you have forked a project and you have code in your fork that's not in the original project, you can get code into the original project by sending the original project's maintainer a request to include your code changes. This request is known as a "Pull Request"
 
+### How to Contribute
+
+- The first thing you should always look for in a project is a file with the name CONTIBUTING.md. This file lists out the information you should follow to contribute to the project. You should look for this file before you start doing development work of any kind.
+
+### GitHub Issues
+
+If your code change is a simple spelling mistake then you can probably just fo ahead and make that change. But if your change is more substantial where it modifies a number of files in a significant way, you probably want to get approval by the project's maintainer(s) before you start working on it.
+
+GitHub has a fantastic interface for asking questions of the project maintainer in an open way that lets everyone see what's being done with the project. This is the GitHub Issues interface.
+
+Now, "issues" doesn't mean that there's actually a bug, it can just be any change that needs to be made to the project. GitHub's issue tracker is quite sophisticated. Each issue can:
+
+- have a label or multiple labels applied to it
+- can be assigned to an individual
+- can be assigned to a milestone (for example the issue will be resolved by the next major release)
+
+But probably one of the most important aspects of the issue tracker is that each issue can have its own comments, so a conversation can form around the issue.
+
+Another thing that's nice about issues is:
+
+- they let you subscribe to an issue so you'll be notified of new comments and code changes
+- you can communicate back and forth with a project maintainer on a specific change.
+
+Before you contribute anything to a file, check out the instructions in CONTRIBUTING.md . Then check out the project's issues and look to see if there's anything that's similar to what you want to contribute. If there is, then subscribe to that issue and read the existing conversation to see if you can help.
+
+If you've looked through the list of issues and don't see one that is similar to what you want to do, then you can create a new issue of your own. On every page of the GitHub issues interface, you'll find the new issue button
+
+### New Issue Page
+
+One really cool thing about the new issue page is that, if the project has a CONTRIBUTING.md file, it will display a notification at the top of the page recommending that you check out the guidelines on how to contribute to the project. Clicking on the "guidelines for contributing" link takes you to the CONTRIBUTING.md file.
+
+The GitHub issues interface support markdown so when you create your issue you can use Markdown to format it and exactly the way you want by including links, images, bulleted lists, and code blocks.
+
+Just like crafting a descriptive commit message, you want to create an issue with an informative title that explains briefly what you want to do. Then, in the comments section, provide plenty of detail on what the change is, or why you think it's needed, or how this will make the project better.
+
+Typically, the project's maintainer has a full-time job and works on their project on the side, so give them some time to respond to your issue before you dive in and start making your changes. Once the project maintainer has given you the go-ahead it's time to start working on the changes you want to contribute back to the project.
+
+### Topic Branches
+
+The best way to organize the set of commits/changes you want to contribute back to the project is to put them all on a topic branch.
+Unlike the master branch which is the default branch that holds all of the commits for your entire project, a topic branch host commits for just a single concept or single area of change.
+
+For example if there is a problem with the login form for logging into the website, then a branch name to address this specific issue could be called:
+
+- login
+- login-bug
+- signup-bug
+- login-form-bug etc.
+
+There are plenty of names that can be used for a topic branch's name. You just want to use a clear descriptive name for the branch so that if, for example, you list out all of the branches you can immediately see what changes are supposed to be in a branch just by its name.
+
+One thing to keep in mind is that sometimes a project has specific requirements on what to name your topic branch. For example, if a branch is going to be addressing bug fixes, then many projects require a bugfix- prefix. Going back to our branch that was dealing with a bug with the login form, it would have to be named something like bugfix-login-form. So definitely check out the CONTRIBUTING.md file to see if they provide instructions on what you should name your topic branches.
+
+### Best Practices
+
+#### Write Descriptive Commit Messages
+
+Write clear, descriptive commit messages. The more descriptive your branch name and commit messages are the more likely it is that the project's maintainer will not have to ask you questions about the purpose of your code or have dig into the code themselves. The less work the maintainer has to do, the faster they'll include your changes into the project.
+
+#### Create Small, Focused Commits
+
+Make sure when you are commiting changes to the project that you make smaller commits. Don't make massive commits that record 10+ file changes and changes to hundres of lines of code. You want to make smaller, more frequent commits that record just a handlful of file changes with a smaller number of line changes.
+
+Think about it this way: if the developer does not like a portion of the changes you're adding to a massive commit, there's no way for them to say, "I like commit A, but just not the part where you change the sidebar's background color." A commit can't be broken down into smaller chunks, so make sure your commits are in small enough chunks and that each commit is focused on altering just one thing. This way the maintainer can say I like commits A, B, C, D, and F but not commit E
+
+#### Update The ReadME
+
+And lastly, if any code changes that you're adding drastically changes the project, you should update the ReadME file to instruct others about this change.
+
+### Recap
+
+Before you start doing any work, make sure to look for the project's CONTRIBUTING.md file.
+
+Next, it's a good idea to look at the GitHub issues for the project
+
+- look at the existing issues to see if one is similar to the change you want to contribute
+- if necessary create a new issue
+- communicate the changes you'd like to make to the project maintainer in the issue
+
+When you start developing, commit all of your work on a topic branch:
+
+- do not work on the master branch
+- make sure to give the topic branch clear, descriptive name
+
+As a general best practice for writing commits:
+
+- make frequent, smaller commits
+- use clear and descriptive commit messages
+- update the README file, if necessary

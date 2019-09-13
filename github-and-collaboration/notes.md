@@ -362,3 +362,57 @@ To get commits from a source repository into your forked repository on GitHub yo
 - fetch the new upstream remote
 - merge the upstream's branch into a local branch
 - push the newly updated local branch to your origin repo
+
+### Manage an active PR
+
+The project maintainer may decide not to accept your changes right away. They might request you to make some additional changes to your code before accepting your request and merging in your changes. Most likely they will communicate their desired changes through the conversation on the pull requests page.
+
+If the project's maintainer is requesting changes to the pull request, then:
+
+- Make any necessary commits on the same branch in your local repository that your pull request is based on.
+- Push the branch to your fork of the source repository.
+
+The commits will then show up on the pull request page.
+
+### Squash Commits
+
+To squash commits together, we're going to use the extremely powerful `git rebase` command. This is
+
+#### The Rebase Command
+
+The `git rebase` command will move commits to have a new base. In the command `git rebase -i HEAD~3` we're telling Git to use `HEAD~3` as the base where all of the other commits `HEAD~2` `HEAD~1` and `HEAD` will connect to.
+
+The `-i` in the command stands for interactive. You can perform a rebase in a non-interactive mode.
+
+`HEAD` indicates your current location (it could point to several things, but typically it'll either point to a branch name or directly to a commit's SHA). The ~3 part means "three before", so `HEAD~3` will be the commit that's three before the one you're currently on. We're using this relative reference to a commit in the `git rebase` command.
+
+We need to force the push after rebasing. `git rebase` creates a new commit with a new SHA.
+
+#### Rebase Commands
+
+Let's take another look at the different commands that you can do with git rebase:
+
+- use p or pick – to keep the commit as is
+- use r or reword – to keep the commit's content but alter the commit message
+- use e or edit – to keep the commit's content but stop before committing so that you can:
+  - add new content or files
+  - remove content or files
+  - alter the content that was going to be committed
+- use s or squash – to combine this commit's changes into the previous commit (the commit above it in the list)
+- use f or fixup – to combine this commit's change into the previous one but drop the commit message
+- use x or exec – to run a shell command
+- use d or drop – to delete the commit
+
+#### When to rebase
+
+As you've seen, the git rebase command is incredibly powerful. It can help you edit commit messages, reorder commits, combine commits, etc. So it truly is a powerhouse of a tool. Now the question becomes "When should you rebase?".
+
+Whenever you rebase commits, Git will create a new SHA for each commit! This has drastic implications. To Git, the SHA is the identifier for a commit, so a different identifier means it's a different commit, regardless if the content has changed at all.
+
+So you should not rebase if you have already pushed the commits you want to rebase. If you're collaborating with other developers, then they might already be working with the commits you've pushed. If you then use git rebase to change things around and then force push the commits, then the other developers will now be out of sync with the remote repository. They will have to do some complicated surgery to their Git repository to get their repo back in a working state...and it might not even be possible for them to do that; they might just have to scrap all of their work and start over with your newly-rebased, force-pushed commits.
+
+The git rebase command is used to do a great many things.
+
+Inside the interactive list of commits, all commits start out as pick, but you can swap that out with one of the other commands (reword, edit, squash, fixup, exec, and drop).
+
+I recommend that you create a backup branch before rebasing, so that it's easy to return to your previous state. If you're happy with the rebase, then you can just delete the backup branch!
